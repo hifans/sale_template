@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+		<data>
+				<record model="ir.ui.view" id="rainsoft_sale_template_form_view">
+						<field name="name">Rainsoft Sale Template Form View</field>
+						<field name="model">sale_template.template</field>
+						<field name="type">form</field>
+						<field name="arch" type="xml">
+								<form string="Sale Template" version="7.0">
+										<sheet>
+												<group>
+														<h1>
+																<label for="name" string="Name"/>
+																<field name="name"/>
+														</h1>
+												</group>
+												<notebook>
+														<page string='Products'>
+																<field name="products">
+																		<tree string="products" editable="bottom">
+																				<field name="product"/>
+																				<field name="quantity"/>
+																		</tree>
+																</field>
+														</page>
+												</notebook>
+										</sheet>
+								</form>
+						</field>
+				</record>
+
+				<record model="ir.ui.view" id="rainsoft_sale_template_tree_view">
+						<field name="name">Rainsoft Sale Template Tree View</field>
+						<field name="model">sale_template.template</field>
+						<field name="type">tree</field>
+						<field name="arch" type="xml">
+								<tree string="Sale Template">
+										<field name="name"/>
+								</tree>
+						</field>
+				</record>
+				
+				<record model="ir.ui.view" id="rainsoft_sale_template_line_form_view">
+						<field name="name">Rainsoft Sale Template line Tree View</field>
+						<field name="model">sale_template.line</field>
+						<field name="type">form</field>
+						<field name="arch" type="xml">
+								<form string="Sale Template">
+										<group>
+												<field name="product"/>
+												<field name="quantity"/>
+										</group>
+								</form>
+						</field>
+				</record>
+
+				<record model="ir.actions.act_window" id="action_sale_template">
+						<field name="name">Action Sale Template</field>
+						<field name="res_model">sale_template.template</field>
+						<field name="view_mode">tree,form</field>
+				</record>
+			
+				<menuitem id="menu_sale_template" name="Sale Template" action="action_sale_template" parent="base.menu_base_config"/>
+
+				<record model="ir.ui.view" id="rainsoft_sale_template_import_view">
+						<field name="name">Rainsoft Sale Template Import</field>
+						<field name="model">sale.order</field>
+						<field name="inherit_id" ref="sale.view_order_form"/>
+						<field name="arch" type="xml">
+								<field name='order_line' position='before'>
+										<group>
+												<group>
+														<field name="sale_template"/>
+												</group>
+												<group>
+														<button name="btn_import" type="object" string="Import"/>
+												</group>
+										</group>
+								</field>
+						</field>
+				</record>
+		</data>
+</openerp>
